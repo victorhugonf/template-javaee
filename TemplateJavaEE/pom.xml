@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.github.victorhugonf.javaee</groupId>
+  <artifactId>template-javaee</artifactId>
+  <packaging>pom</packaging>
+  <name>Template Java EE</name>
+  
+  	<properties>
+  		<project-version>0.0.1</project-version>
+  		<module-version>${project-version}</module-version>
+
+    	<java-version>1.8</java-version>
+    	<javaee-api-version>8.0</javaee-api-version>
+    	<resteasy-jaxrs-version>3.1.4.Final</resteasy-jaxrs-version>
+    	<commons-lang3-version>3.0</commons-lang3-version>
+    	
+		<maven.compiler.source>${java-version}</maven.compiler.source>
+		<maven.compiler.target>${java-version}</maven.compiler.target>
+		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+  
+  <version>${project-version}</version>
+  
+  <modules>
+  	<module>ear</module>
+  	<module>ejb</module>
+  	<!-- <module>jsf</module> -->
+  	<module>rest-api</module>
+  </modules>
+
+  <dependencyManagement>
+  	<dependencies>
+		<dependency>
+    		<groupId>org.apache.commons</groupId>
+    		<artifactId>commons-lang3</artifactId>
+    		<version>${commons-lang3-version}</version>
+		</dependency>
+  		
+  	</dependencies>
+  </dependencyManagement>
+</project>
