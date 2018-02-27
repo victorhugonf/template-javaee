@@ -24,17 +24,17 @@ public class AircraftService extends AbstractService<Aircraft, AircraftDao> {
 	}
 	
 	@Override
-    protected void validatePersist(Aircraft valueObject) throws Exception{
+    protected void validatePersist(Aircraft object) throws Exception{
 		
     }
     
     @Override
-    protected void validateMerge(Aircraft valueObject) throws Exception{
+    protected void validateMerge(Aircraft object) throws Exception{
     	
     }
     
     @Override
-	protected void validateRemove(Aircraft valueObject) throws Exception {
+	protected void validateRemove(Aircraft object) throws Exception {
 				
 	}
     
@@ -47,7 +47,7 @@ public class AircraftService extends AbstractService<Aircraft, AircraftDao> {
     }
 
 	@Override
-	protected Class<Aircraft> getClassValueObject() {
+	protected Class<Aircraft> getClazz() {
 		return Aircraft.class;
 	}
     

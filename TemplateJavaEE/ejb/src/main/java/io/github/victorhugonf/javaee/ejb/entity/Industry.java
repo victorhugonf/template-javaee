@@ -20,7 +20,7 @@ import io.github.victorhugonf.javaee.ejb.utils.CONSTANTS;
 @SequenceGenerator(name = CONSTANTS.DATA_BASE.TABLES.INDUSTRIES.SEQUENCE,
 					sequenceName = CONSTANTS.DATA_BASE.TABLES.INDUSTRIES.SEQUENCE,
 					allocationSize = 1)
-public class Industry implements ValueObject{
+public class Industry implements Identifiable{
     
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = CONSTANTS.DATA_BASE.TABLES.INDUSTRIES.SEQUENCE)

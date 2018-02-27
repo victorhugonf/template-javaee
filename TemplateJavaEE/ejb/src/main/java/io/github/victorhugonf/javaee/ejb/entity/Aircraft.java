@@ -19,7 +19,7 @@ import io.github.victorhugonf.javaee.ejb.utils.CONSTANTS;
 @SequenceGenerator(name = CONSTANTS.DATA_BASE.TABLES.AIRCRAFTS.SEQUENCE,
 					sequenceName = CONSTANTS.DATA_BASE.TABLES.AIRCRAFTS.SEQUENCE,
 					allocationSize = 1)
-public class Aircraft implements ValueObject{
+public class Aircraft implements Identifiable{
     
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = CONSTANTS.DATA_BASE.TABLES.AIRCRAFTS.SEQUENCE)

@@ -23,7 +23,7 @@ public class AircraftDao extends AbstractDataAccessObject<Aircraft> {
 //	}
 
 	@Override
-	protected Class<Aircraft> getClassValueObject() {
+	protected Class<Aircraft> getClazz() {
 		return Aircraft.class;
 	}
 	

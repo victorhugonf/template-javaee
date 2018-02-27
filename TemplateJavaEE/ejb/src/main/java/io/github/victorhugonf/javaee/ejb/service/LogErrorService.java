@@ -19,22 +19,22 @@ public class LogErrorService extends AbstractService<LogError, LogErrorDao>{
 	}
 
 	@Override
-	protected void validatePersist(LogError valueObject) throws Exception {
+	protected void validatePersist(LogError object) throws Exception {
 		
 	}
 
 	@Override
-	protected void validateMerge(LogError valueObject) throws Exception {
+	protected void validateMerge(LogError object) throws Exception {
 		throw new Exception("Log errors can not be merged.");
 	}
 
 	@Override
-	protected void validateRemove(LogError valueObject) throws Exception {
+	protected void validateRemove(LogError object) throws Exception {
 		throw new Exception("Log errors can not be removed.");
 	}
 
 	@Override
-	protected Class<LogError> getClassValueObject() {
+	protected Class<LogError> getClazz() {
 		return LogError.class;
 	}
 	

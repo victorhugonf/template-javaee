@@ -2,22 +2,22 @@ package io.github.victorhugonf.javaee.ejb.service;
 
 import java.util.List;
 
-import io.github.victorhugonf.javaee.ejb.entity.ValueObject;
+import io.github.victorhugonf.javaee.ejb.entity.Identifiable;
 
-public interface Service <VO extends ValueObject> {
+public interface Service <I extends Identifiable> {
 	
-    VO persist(VO valueObject) throws Exception;
+    I persist(I object) throws Exception;
 
-	VO merge(VO valueObject) throws Exception;
+	I merge(I object) throws Exception;
     
 	void remove(long id) throws Exception;
     
-    void remove(VO valueObject) throws Exception;
+    void remove(I object) throws Exception;
     
-    List<VO> getAll() throws Exception;
+    List<I> getAll() throws Exception;
     
-    VO get(long id) throws Exception;
+    I get(long id) throws Exception;
     
-    VO get(VO valueObject) throws Exception;
+    I get(I object) throws Exception;
     
 }

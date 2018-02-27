@@ -24,17 +24,17 @@ public class IndustryService extends AbstractService<Industry, IndustryDao> {
 	}
 	
 	@Override
-    protected void validatePersist(Industry valueObject) throws Exception{
+    protected void validatePersist(Industry object) throws Exception{
 		
     }
     
     @Override
-    protected void validateMerge(Industry valueObject) throws Exception{
+    protected void validateMerge(Industry object) throws Exception{
     	
     }
     
     @Override
-	protected void validateRemove(Industry valueObject) throws Exception {
+	protected void validateRemove(Industry object) throws Exception {
 				
 	}
     
@@ -47,7 +47,7 @@ public class IndustryService extends AbstractService<Industry, IndustryDao> {
     }
 
 	@Override
-	protected Class<Industry> getClassValueObject() {
+	protected Class<Industry> getClazz() {
 		return Industry.class;
 	}
     

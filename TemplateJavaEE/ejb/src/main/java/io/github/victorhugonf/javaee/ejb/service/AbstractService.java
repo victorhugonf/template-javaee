@@ -7,64 +7,64 @@ import javax.ejb.TransactionManagementType;
 import javax.interceptor.Interceptors;
 
 import io.github.victorhugonf.javaee.ejb.dao.AbstractDataAccessObject;
-import io.github.victorhugonf.javaee.ejb.entity.ValueObject;
+import io.github.victorhugonf.javaee.ejb.entity.Identifiable;
 import io.github.victorhugonf.javaee.ejb.logerro.LogErrorInterceptor;
 
 @Interceptors(LogErrorInterceptor.class)
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public abstract class AbstractService <VO extends ValueObject,
-									DAO extends AbstractDataAccessObject<VO>> 
-									implements Service<VO>{
+public abstract class AbstractService <I extends Identifiable,
+									DAO extends AbstractDataAccessObject<I>> 
+									implements Service<I>{
 	
 	protected abstract DAO dao();
-	protected abstract Class<VO> getClassValueObject();
+	protected abstract Class<I> getClazz();
 	
-    public VO persist(VO valueObject) throws Exception {
-    	validate(valueObject);
-    	valueObject.validate();
-    	validatePersist(valueObject);
-		return dao().persist(valueObject);
+    public I persist(I object) throws Exception {
+    	validate(object);
+    	object.validate();
+    	validatePersist(object);
+		return dao().persist(object);
     }
 
-	private void validate(VO valueObject) throws Exception {
-		if(valueObject == null){
-    		throw new Exception(getClass().getName() + " not defined.");
+	private void validate(I object) throws Exception {
+		if(object == null){
+    		throw new Exception(getClazz().getName() + " not defined.");
     	}
 	}
     
-    protected abstract void validatePersist(VO valueObject) throws Exception;
+    protected abstract void validatePersist(I object) throws Exception;
 
-    public VO merge(VO valueObject) throws Exception {
-    	validate(valueObject);
-    	valueObject.validate();
-    	validateMerge(valueObject);
-    	return dao().merge(valueObject);
+    public I merge(I object) throws Exception {
+    	validate(object);
+    	object.validate();
+    	validateMerge(object);
+    	return dao().merge(object);
     }
     
-    protected abstract void validateMerge(VO valueObject) throws Exception;
+    protected abstract void validateMerge(I object) throws Exception;
 
     public void remove(long id) throws Exception {
     	remove(get(id));
     }
     
-    public void remove(VO valueObject) throws Exception {
-    	validate(valueObject);
-    	validateRemove(valueObject);
-    	dao().remove(valueObject);
+    public void remove(I object) throws Exception {
+    	validate(object);
+    	validateRemove(object);
+    	dao().remove(object);
     }
     
-    protected abstract void validateRemove(VO valueObject) throws Exception;
+    protected abstract void validateRemove(I object) throws Exception;
 
-    public List<VO> getAll() throws Exception {
+    public List<I> getAll() throws Exception {
         return dao().getAll();
     }
     
-    public VO get(long id) throws Exception {
+    public I get(long id) throws Exception {
         return dao().get(id);
     }
     
-    public VO get(VO valueObject) throws Exception {
-        return dao().get(valueObject);
+    public I get(I object) throws Exception {
+        return dao().get(object);
     }
     
 }

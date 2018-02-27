@@ -18,7 +18,7 @@ public class EndPointIndustry extends AbstractEndPoint<Industry, IndustryService
 	}
 
 	@Override
-	protected Class<Industry> getClassValueObject() {
+	protected Class<Industry> getClazz() {
 		return Industry.class;
 	}
 	

@@ -10,10 +10,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import io.github.victorhugonf.javaee.ejb.entity.ValueObject;
+import io.github.victorhugonf.javaee.ejb.entity.Identifiable;
 
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public abstract class AbstractDataAccessObject <VO extends ValueObject> {
+public abstract class AbstractDataAccessObject <I extends Identifiable> {
 
 	@PersistenceContext
     private EntityManager entityManager;
@@ -26,45 +26,45 @@ public abstract class AbstractDataAccessObject <VO extends ValueObject> {
 		return getEntityManager().getCriteriaBuilder();
 	}
 	
-	protected CriteriaQuery<VO> createQuery(){
-		return getCriteriaBuilder().createQuery(getClassValueObject());
+	protected CriteriaQuery<I> createQuery(){
+		return getCriteriaBuilder().createQuery(getClazz());
 	}
 	
-	protected Root<VO> createRoot(CriteriaQuery<VO> criteriaQuery){
-		return criteriaQuery.from(getClassValueObject());
+	protected Root<I> createRoot(CriteriaQuery<I> criteriaQuery){
+		return criteriaQuery.from(getClazz());
 	}
 	
-    public VO persist(VO valueObject) throws Exception {
-    	getEntityManager().persist(valueObject);
-    	return valueObject;
+    public I persist(I object) throws Exception {
+    	getEntityManager().persist(object);
+    	return object;
     }
 
-    public VO merge(VO valueObject) throws Exception {
-    	return getEntityManager().merge(valueObject);
+    public I merge(I object) throws Exception {
+    	return getEntityManager().merge(object);
     }
 
-    public void remove(VO valueObject) throws Exception {
-    	getEntityManager().remove(get(valueObject));
+    public void remove(I object) throws Exception {
+    	getEntityManager().remove(get(object));
     }
     
-	public VO get(VO valueObject) throws Exception {
-		if(valueObject == null){
+	public I get(I object) throws Exception {
+		if(object == null){
 			return null;
 		}
 		
-		return get(valueObject.getId());
+		return get(object.getId());
 	}
 	
-	protected abstract Class<VO> getClassValueObject();
+	protected abstract Class<I> getClazz();
 	
-	public VO get(long id) throws Exception {
-		return getEntityManager().find(getClassValueObject(), id);
+	public I get(long id) throws Exception {
+		return getEntityManager().find(getClazz(), id);
 	}
     
-	public List<VO> getAll() throws Exception {
-    	CriteriaQuery<VO> cq = createQuery();
+	public List<I> getAll() throws Exception {
+    	CriteriaQuery<I> cq = createQuery();
     	cq.select(createRoot(cq));
-    	return (List<VO>) getEntityManager().createQuery(cq).getResultList();
+    	return (List<I>) getEntityManager().createQuery(cq).getResultList();
     }
     
 }

@@ -10,7 +10,7 @@ import io.github.victorhugonf.javaee.ejb.entity.LogError;
 public class LogErrorDao extends AbstractDataAccessObject<LogError> {
 
 	@Override
-	protected Class<LogError> getClassValueObject() {
+	protected Class<LogError> getClazz() {
 		return LogError.class;
 	}
     

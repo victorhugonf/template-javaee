@@ -23,7 +23,7 @@ public class IndustryDao extends AbstractDataAccessObject<Industry> {
 //	}
 
 	@Override
-	protected Class<Industry> getClassValueObject() {
+	protected Class<Industry> getClazz() {
 		return Industry.class;
 	}
 	

@@ -15,15 +15,15 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import io.github.victorhugonf.javaee.ejb.entity.LogError;
-import io.github.victorhugonf.javaee.ejb.entity.ValueObject;
+import io.github.victorhugonf.javaee.ejb.entity.Identifiable;
 import io.github.victorhugonf.javaee.ejb.service.Service;
 
 @Consumes(value = MediaType.APPLICATION_JSON)
 @Produces(value = MediaType.APPLICATION_JSON)
-public abstract class AbstractEndPoint<VO extends ValueObject, S extends Service<VO>> {
+public abstract class AbstractEndPoint<I extends Identifiable, S extends Service<I>> {
 	
 	abstract protected S service();
-	abstract protected Class<VO> getClassValueObject();
+	abstract protected Class<I> getClazz();
 	
 //	protected abstract String getPath();
 //	protected abstract long getId(PO po);
@@ -60,7 +60,7 @@ public abstract class AbstractEndPoint<VO extends ValueObject, S extends Service
 	@GET
 	public Response getAll(){
 		try {
-			List<VO> valueObjects = service().getAll();
+			List<I> valueObjects = service().getAll();
 
 			if(valueObjects == null || valueObjects.isEmpty()){
 				return responseNoContent();
@@ -76,12 +76,12 @@ public abstract class AbstractEndPoint<VO extends ValueObject, S extends Service
 	@Path("{id}")
 	public Response get(@PathParam("id") long id){
 		try {
-			VO valueObject = service().get(id);
+			I object = service().get(id);
 			
-			if(valueObject == null){
+			if(object == null){
 				return responseNoContent();
 			}else{
-				return responseOk(valueObject);
+				return responseOk(object);
 			}
 		} catch (Exception e) {
 			return handleError(e);
@@ -89,14 +89,14 @@ public abstract class AbstractEndPoint<VO extends ValueObject, S extends Service
 	}
 
 	@POST
-	public Response post(VO valueObject){
+	public Response post(I object){
 		try {
-			VO valueObjectPersisted = service().persist(valueObject);
+			I objectPersisted = service().persist(object);
 			
-			if(valueObjectPersisted == null){
+			if(objectPersisted == null){
 				return responseNoContent();
 			}else{
-				return responseOk(valueObjectPersisted);
+				return responseOk(objectPersisted);
 			}
 		} catch (Exception e) {
 			return handleError(e);
@@ -105,20 +105,20 @@ public abstract class AbstractEndPoint<VO extends ValueObject, S extends Service
 	
 	@PUT
 	@Path("{id}")
-	public Response put(@PathParam("id") long id, VO valueObject){
+	public Response put(@PathParam("id") long id, I object){
 		try {
-			if(valueObject == null){
-				throw new Exception(getClassValueObject() + " not defined.");
+			if(object == null){
+				throw new Exception(getClazz().getName() + " not defined.");
 			}
 			
-			valueObject.setId(id);
+			object.setId(id);
 			
-			VO valueObjectMerged = service().merge(valueObject);
+			I objectMerged = service().merge(object);
 			
-			if(valueObjectMerged == null){
+			if(objectMerged == null){
 				return responseNoContent();
 			}else{
-				return responseOk(valueObjectMerged);
+				return responseOk(objectMerged);
 			}
 		} catch (Exception e) {
 			return handleError(e);
