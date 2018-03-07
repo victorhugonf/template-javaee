@@ -19,7 +19,7 @@ import io.github.victorhugonf.javaee.ejb.utils.exceptions.UtilException;
 @SequenceGenerator(name = CONSTANTS.DATA_BASE.TABLES.LOG_ERRORS.SEQUENCE,
 					sequenceName = CONSTANTS.DATA_BASE.TABLES.LOG_ERRORS.SEQUENCE,
 					allocationSize = 1)
-public class LogError implements Serializable, Identifiable{
+public class LogError implements Serializable, EntityIdentifiable{
     
 	private static final long serialVersionUID = -1253994792523393811L;
 
@@ -36,7 +36,13 @@ public class LogError implements Serializable, Identifiable{
     @Column(nullable = false)
     private Date date;
     
+    public LogError(){
+    	super();
+    }
+    
     public LogError(Exception e){
+    	this();
+    	
     	message = getMessage(e);
 		stackTrace = getStackTrace(e);
 		date = new Date();

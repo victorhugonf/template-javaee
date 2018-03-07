@@ -13,7 +13,7 @@ import io.github.victorhugonf.javaee.ejb.entity.Aircraft;
 
 @Stateless
 @LocalBean
-public class AircraftService extends AbstractService<Aircraft, AircraftDao> {
+public class AircraftService extends GenericService<Aircraft, AircraftDao> {
 	   
 	@EJB
 	private AircraftDao aircraftDao;

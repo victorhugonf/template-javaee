@@ -9,13 +9,18 @@
   		<project-version>0.0.1</project-version>
   		<module-version>${project-version}</module-version>
 
-    	<java-version>1.8</java-version>
+		<java-version>1.8</java-version>
     	<javaee-api-version>8.0</javaee-api-version>
     	<resteasy-jaxrs-version>3.1.4.Final</resteasy-jaxrs-version>
     	<commons-lang3-version>3.0</commons-lang3-version>
     	
 		<maven.compiler.source>${java-version}</maven.compiler.source>
 		<maven.compiler.target>${java-version}</maven.compiler.target>
+		
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<ear-plugin-version>2.10.1</ear-plugin-version>
+		<ejb-plugin-version>2.5.1</ejb-plugin-version>
+		<war-plugin-version>2.6</war-plugin-version>
 		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -39,4 +44,77 @@
   		
   	</dependencies>
   </dependencyManagement>
+  
+  <build>
+	<pluginManagement>
+    	<plugins>
+        	<plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                	<source>${java-version}</source>
+                    <target>${java-version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>                    
+            </plugin>
+            
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>${ear-plugin-version}</version>
+				<!-- <configuration>
+					<generateModuleId>true</generateModuleId>
+					<packagingExcludes>/lib/hibernate-core-4.3.7.Final.jar,lib/hibernate-jpa-2.1-api-1.0.0.Final.jar</packagingExcludes>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>/lib</classpathPrefix>
+						</manifest>
+					</archive>
+				</configuration> -->
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>${ejb-plugin-version}</version>
+				<!-- <configuration>
+					<ejbVersion>${ejb-spec-version}</ejbVersion>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration> -->
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${war-plugin-version}</version>
+				<!-- <configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>/lib</classpathPrefix>
+						</manifest>
+					</archive>
+					<webResources>
+						<resource>
+							<filtering>true</filtering>
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>**/web.xml</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration> -->
+			</plugin>
+        </plugins>
+    </pluginManagement>
+  </build>
+  
 </project>

@@ -9,7 +9,7 @@ import io.github.victorhugonf.javaee.ejb.entity.LogError;
 
 @Stateless
 @LocalBean
-public class LogErrorService extends AbstractService<LogError, LogErrorDao>{
+public class LogErrorService extends GenericService<LogError, LogErrorDao>{
     
 	@EJB
 	private LogErrorDao logErrorDao;

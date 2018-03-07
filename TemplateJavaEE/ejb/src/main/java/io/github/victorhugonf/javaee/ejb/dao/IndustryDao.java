@@ -12,7 +12,7 @@ import io.github.victorhugonf.javaee.ejb.utils.CONSTANTS;
 
 @Stateless
 @LocalBean
-public class IndustryDao extends AbstractDataAccessObject<Industry> {
+public class IndustryDao extends GenericDao<Industry> {
 
 //	@PersistenceContext
 //    private EntityManager _entityManager;

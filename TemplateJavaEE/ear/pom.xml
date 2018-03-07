@@ -11,15 +11,19 @@
   <version>${module-version}</version>
   
   <build>
+  	<finalName>template-javaee-ear</finalName>
   	<plugins>
   		<plugin>
   			<groupId>org.apache.maven.plugins</groupId>
   			<artifactId>maven-ear-plugin</artifactId>
-  			<!-- <finalName>template-javaee-ear</finalName> -->
   			
   			<configuration>
   				<source>${java-version}</source>
   				<target>${java-version}</target>
+  				
+  				<finalName>template-javaee-ear</finalName>
+  			<!-- <defaultLibBundleDir>/lib</defaultLibBundleDir> -->
+			<!-- <skinnyWars>true</skinnyWars> -->
   			
   				<ejbModule>
   					<groupId>io.github.victorhugonf.javaee</groupId>

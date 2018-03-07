@@ -20,7 +20,7 @@ import io.github.victorhugonf.javaee.ejb.utils.CONSTANTS;
 @SequenceGenerator(name = CONSTANTS.DATA_BASE.TABLES.INDUSTRIES.SEQUENCE,
 					sequenceName = CONSTANTS.DATA_BASE.TABLES.INDUSTRIES.SEQUENCE,
 					allocationSize = 1)
-public class Industry implements Identifiable{
+public class Industry implements EntityIdentifiable{
     
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = CONSTANTS.DATA_BASE.TABLES.INDUSTRIES.SEQUENCE)
@@ -29,7 +29,7 @@ public class Industry implements Identifiable{
 	@Column(name = CONSTANTS.DATA_BASE.TABLES.INDUSTRIES.COLUMNS.NAME, nullable = false, columnDefinition="text")
 	private String name;
 	
-	@OneToMany(mappedBy = CONSTANTS.DATA_BASE.TABLES.AIRCRAFTS.COLUMNS.ID_INDUSTRY)
+	@OneToMany(mappedBy = CONSTANTS.DATA_BASE.TABLES.AIRCRAFTS.REFERENCES.INDUSTRY)
 	private List<Aircraft> aircrafts;
 		
 	public long getId() {

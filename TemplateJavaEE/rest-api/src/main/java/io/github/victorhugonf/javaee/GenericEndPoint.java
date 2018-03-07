@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -15,15 +16,15 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import io.github.victorhugonf.javaee.ejb.entity.LogError;
-import io.github.victorhugonf.javaee.ejb.entity.Identifiable;
+import io.github.victorhugonf.javaee.ejb.entity.EntityIdentifiable;
 import io.github.victorhugonf.javaee.ejb.service.Service;
 
 @Consumes(value = MediaType.APPLICATION_JSON)
 @Produces(value = MediaType.APPLICATION_JSON)
-public abstract class AbstractEndPoint<I extends Identifiable, S extends Service<I>> {
+public abstract class GenericEndPoint<E extends EntityIdentifiable, S extends Service<E>> {
 	
 	abstract protected S service();
-	abstract protected Class<I> getClazz();
+	abstract protected Class<E> getClazz();
 	
 //	protected abstract String getPath();
 //	protected abstract long getId(PO po);
@@ -60,7 +61,7 @@ public abstract class AbstractEndPoint<I extends Identifiable, S extends Service
 	@GET
 	public Response getAll(){
 		try {
-			List<I> valueObjects = service().getAll();
+			List<E> valueObjects = service().getAll();
 
 			if(valueObjects == null || valueObjects.isEmpty()){
 				return responseNoContent();
@@ -76,7 +77,7 @@ public abstract class AbstractEndPoint<I extends Identifiable, S extends Service
 	@Path("{id}")
 	public Response get(@PathParam("id") long id){
 		try {
-			I object = service().get(id);
+			E object = service().get(id);
 			
 			if(object == null){
 				return responseNoContent();
@@ -89,9 +90,9 @@ public abstract class AbstractEndPoint<I extends Identifiable, S extends Service
 	}
 
 	@POST
-	public Response post(I object){
+	public Response post(E object){
 		try {
-			I objectPersisted = service().persist(object);
+			E objectPersisted = service().persist(object);
 			
 			if(objectPersisted == null){
 				return responseNoContent();
@@ -105,7 +106,7 @@ public abstract class AbstractEndPoint<I extends Identifiable, S extends Service
 	
 	@PUT
 	@Path("{id}")
-	public Response put(@PathParam("id") long id, I object){
+	public Response put(@PathParam("id") long id, E object){
 		try {
 			if(object == null){
 				throw new Exception(getClazz().getName() + " not defined.");
@@ -113,7 +114,31 @@ public abstract class AbstractEndPoint<I extends Identifiable, S extends Service
 			
 			object.setId(id);
 			
-			I objectMerged = service().merge(object);
+			E objectMerged = service().merge(object);
+			
+			if(objectMerged == null){
+				return responseNoContent();
+			}else{
+				return responseOk(objectMerged);
+			}
+		} catch (Exception e) {
+			return handleError(e);
+		}
+	}
+	
+	@PATCH
+	@Path("{id}")
+	public Response patch(@PathParam("id") long id, E object){
+		try {
+			if(object == null){
+				throw new Exception(getClazz().getName() + " not defined.");
+			}
+			
+			object.setId(id);
+			
+			//TODO: recuperar o objeto do banco e atribuir apenas os campos preenchidos
+			
+			E objectMerged = service().merge(object);
 			
 			if(objectMerged == null){
 				return responseNoContent();

@@ -7,7 +7,7 @@ import io.github.victorhugonf.javaee.ejb.entity.LogError;
 
 @Stateless
 @LocalBean
-public class LogErrorDao extends AbstractDataAccessObject<LogError> {
+public class LogErrorDao extends GenericDao<LogError> {
 
 	@Override
 	protected Class<LogError> getClazz() {

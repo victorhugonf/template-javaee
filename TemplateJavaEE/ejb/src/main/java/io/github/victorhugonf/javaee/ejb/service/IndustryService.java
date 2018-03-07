@@ -13,7 +13,7 @@ import io.github.victorhugonf.javaee.ejb.entity.Industry;
 
 @Stateless
 @LocalBean
-public class IndustryService extends AbstractService<Industry, IndustryDao> {
+public class IndustryService extends GenericService<Industry, IndustryDao> {
 	   
 	@EJB
 	private IndustryDao industryDao;

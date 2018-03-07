@@ -2,9 +2,9 @@ package io.github.victorhugonf.javaee.ejb.service;
 
 import java.util.List;
 
-import io.github.victorhugonf.javaee.ejb.entity.Identifiable;
+import io.github.victorhugonf.javaee.ejb.entity.EntityIdentifiable;
 
-public interface Service <I extends Identifiable> {
+public interface Service <I extends EntityIdentifiable> {
 	
     I persist(I object) throws Exception;
 

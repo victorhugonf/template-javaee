@@ -1,6 +1,6 @@
 package io.github.victorhugonf.javaee.ejb.entity;
 
-public interface Identifiable  {
+public interface EntityIdentifiable  {
 	
 	long getId();
 

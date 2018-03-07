@@ -10,10 +10,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import io.github.victorhugonf.javaee.ejb.entity.Identifiable;
+import io.github.victorhugonf.javaee.ejb.entity.EntityIdentifiable;
 
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public abstract class AbstractDataAccessObject <I extends Identifiable> {
+public abstract class GenericDao <E extends EntityIdentifiable> {
 
 	@PersistenceContext
     private EntityManager entityManager;
@@ -26,28 +26,28 @@ public abstract class AbstractDataAccessObject <I extends Identifiable> {
 		return getEntityManager().getCriteriaBuilder();
 	}
 	
-	protected CriteriaQuery<I> createQuery(){
+	protected CriteriaQuery<E> createQuery(){
 		return getCriteriaBuilder().createQuery(getClazz());
 	}
 	
-	protected Root<I> createRoot(CriteriaQuery<I> criteriaQuery){
+	protected Root<E> createRoot(CriteriaQuery<E> criteriaQuery){
 		return criteriaQuery.from(getClazz());
 	}
 	
-    public I persist(I object) throws Exception {
+    public E persist(E object) throws Exception {
     	getEntityManager().persist(object);
     	return object;
     }
 
-    public I merge(I object) throws Exception {
+    public E merge(E object) throws Exception {
     	return getEntityManager().merge(object);
     }
 
-    public void remove(I object) throws Exception {
+    public void remove(E object) throws Exception {
     	getEntityManager().remove(get(object));
     }
     
-	public I get(I object) throws Exception {
+	public E get(E object) throws Exception {
 		if(object == null){
 			return null;
 		}
@@ -55,16 +55,16 @@ public abstract class AbstractDataAccessObject <I extends Identifiable> {
 		return get(object.getId());
 	}
 	
-	protected abstract Class<I> getClazz();
+	protected abstract Class<E> getClazz();
 	
-	public I get(long id) throws Exception {
+	public E get(long id) throws Exception {
 		return getEntityManager().find(getClazz(), id);
 	}
     
-	public List<I> getAll() throws Exception {
-    	CriteriaQuery<I> cq = createQuery();
+	public List<E> getAll() throws Exception {
+    	CriteriaQuery<E> cq = createQuery();
     	cq.select(createRoot(cq));
-    	return (List<I>) getEntityManager().createQuery(cq).getResultList();
+    	return (List<E>) getEntityManager().createQuery(cq).getResultList();
     }
     
 }

@@ -12,7 +12,7 @@ import io.github.victorhugonf.javaee.ejb.utils.CONSTANTS;
 
 @Stateless
 @LocalBean
-public class AircraftDao extends AbstractDataAccessObject<Aircraft> {
+public class AircraftDao extends GenericDao<Aircraft> {
 
 //	@PersistenceContext
 //    private EntityManager _entityManager;

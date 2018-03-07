@@ -41,6 +41,13 @@ public class CONSTANTS {
 					public static final String MODEL = "model";
 					public static final String ID_INDUSTRY = "id_industry";
 				}
+				
+				public class REFERENCES{
+					
+					private REFERENCES(){}
+					
+					public static final String INDUSTRY = "industry";
+				}
 			}
 			
 			public class LOG_ERRORS{
