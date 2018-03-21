@@ -8,10 +8,10 @@ import io.github.victorhugonf.javaee.ejb.service.IndustryService;
 
 @Path("industry")
 public class EndPointIndustry extends GenericEndPoint<Industry, IndustryService> {
-	   
+
 	@Inject
 	private IndustryService industryService;
-	
+
 	@Override
 	protected IndustryService service() {
 		return industryService;
@@ -21,7 +21,7 @@ public class EndPointIndustry extends GenericEndPoint<Industry, IndustryService>
 	protected Class<Industry> getClazz() {
 		return Industry.class;
 	}
-	
-	
-    
+
+
+
 }

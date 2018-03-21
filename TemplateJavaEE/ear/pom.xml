@@ -5,31 +5,31 @@
     <artifactId>template-javaee</artifactId>
     <version>${project-version}</version>
   </parent>
-  
+
   <artifactId>ear</artifactId>
   <packaging>ear</packaging>
   <version>${module-version}</version>
-  
+
   <build>
   	<finalName>template-javaee-ear</finalName>
   	<plugins>
   		<plugin>
   			<groupId>org.apache.maven.plugins</groupId>
   			<artifactId>maven-ear-plugin</artifactId>
-  			
+
   			<configuration>
   				<source>${java-version}</source>
   				<target>${java-version}</target>
-  				
+
   				<finalName>template-javaee-ear</finalName>
   			<!-- <defaultLibBundleDir>/lib</defaultLibBundleDir> -->
 			<!-- <skinnyWars>true</skinnyWars> -->
-  			
+
   				<ejbModule>
   					<groupId>io.github.victorhugonf.javaee</groupId>
     				<artifactId>ejb</artifactId>
   				</ejbModule>
-  				 <!-- 
+  				 <!--
   				 <webModule>
   					<groupId>io.github.victorhugonf.javaee</groupId>
     				<artifactId>jsf</artifactId>
@@ -43,5 +43,20 @@
   		</plugin>
   	</plugins>
   </build>
-  
+
+  <dependencies>
+  	<dependency>
+  		<groupId>io.github.victorhugonf.javaee</groupId>
+    	<artifactId>ejb</artifactId>
+    	<type>ejb</type>
+    	<version>${module-version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>io.github.victorhugonf.javaee</groupId>
+    	<artifactId>rest-api</artifactId>
+    	<type>war</type>
+    	<version>${module-version}</version>
+  	</dependency>
+  </dependencies>
+
 </project>

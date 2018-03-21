@@ -5,11 +5,11 @@
     <artifactId>template-javaee</artifactId>
     <version>${project-version}</version>
   </parent>
-  
+
   <artifactId>rest-api</artifactId>
   <packaging>war</packaging>
   <version>${module-version}</version>
-  
+
   <dependencies>
   	<dependency>
   		<groupId>io.github.victorhugonf.javaee</groupId>
@@ -17,13 +17,14 @@
   		<version>${module-version}</version>
   		<scope>provided</scope>
   	</dependency>
-  	
+
 	<dependency>
     	<groupId>org.jboss.resteasy</groupId>
     	<artifactId>resteasy-jaxrs</artifactId>
     	<version>${resteasy-jaxrs-version}</version>
+    	<scope>provided</scope>
 	</dependency>
-  	
+
   </dependencies>
-  
+
 </project>
