@@ -11,29 +11,30 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import io.github.victorhugonf.javaee.ejb.entity.EntityIdentifiable;
+import io.github.victorhugonf.javaee.ejb.utils.DataFilter;
 
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public abstract class GenericDao <E extends EntityIdentifiable> {
 
 	@PersistenceContext
     private EntityManager entityManager;
-	
+
 	protected EntityManager getEntityManager(){
 		return entityManager;
 	}
-	
+
 	protected CriteriaBuilder getCriteriaBuilder(){
 		return getEntityManager().getCriteriaBuilder();
 	}
-	
+
 	protected CriteriaQuery<E> createQuery(){
 		return getCriteriaBuilder().createQuery(getClazz());
 	}
-	
+
 	protected Root<E> createRoot(CriteriaQuery<E> criteriaQuery){
 		return criteriaQuery.from(getClazz());
 	}
-	
+
     public E persist(E object) throws Exception {
     	getEntityManager().persist(object);
     	return object;
@@ -46,25 +47,38 @@ public abstract class GenericDao <E extends EntityIdentifiable> {
     public void remove(E object) throws Exception {
     	getEntityManager().remove(get(object));
     }
-    
+
 	public E get(E object) throws Exception {
 		if(object == null){
 			return null;
 		}
-		
+
 		return get(object.getId());
 	}
-	
+
 	protected abstract Class<E> getClazz();
-	
+
 	public E get(long id) throws Exception {
 		return getEntityManager().find(getClazz(), id);
 	}
-    
+
 	public List<E> getAll() throws Exception {
     	CriteriaQuery<E> cq = createQuery();
     	cq.select(createRoot(cq));
-    	return (List<E>) getEntityManager().createQuery(cq).getResultList();
+    	return getEntityManager().createQuery(cq).getResultList();
     }
-    
+
+	public List<E> getAll(DataFilter filter) throws Exception {
+    	CriteriaQuery<E> cq = createQuery();
+    	cq.select(createRoot(cq));
+    	return getResultList(cq, filter);
+    }
+
+	protected List<E> getResultList(CriteriaQuery<E> criteriaQuery, DataFilter filter){
+		return getEntityManager().createQuery(criteriaQuery)
+    			.setFirstResult(filter.getFirstResult())
+    			.setMaxResults(filter.getPageSize())
+    			.getResultList();
+	}
+
 }
