@@ -13,12 +13,13 @@ import io.github.victorhugonf.javaee.ejb.logerro.LogErrorInterceptor;
 @Interceptors(LogErrorInterceptor.class)
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public abstract class GenericService <E extends EntityIdentifiable,
-									DAO extends GenericDao<E>> 
+									D extends GenericDao<E>>
 									implements Service<E>{
-	
-	protected abstract DAO dao();
+
+	protected abstract D dao();
 	protected abstract Class<E> getClazz();
-	
+
+	@Override
     public E persist(E object) throws Exception {
     	validate(object);
     	object.validate();
@@ -31,40 +32,46 @@ public abstract class GenericService <E extends EntityIdentifiable,
     		throw new Exception(getClazz().getName() + " not defined.");
     	}
 	}
-    
+
     protected abstract void validatePersist(E object) throws Exception;
 
+    @Override
     public E merge(E object) throws Exception {
     	validate(object);
     	object.validate();
     	validateMerge(object);
     	return dao().merge(object);
     }
-    
+
     protected abstract void validateMerge(E object) throws Exception;
 
+    @Override
     public void remove(long id) throws Exception {
     	remove(get(id));
     }
-    
+
+    @Override
     public void remove(E object) throws Exception {
     	validate(object);
     	validateRemove(object);
     	dao().remove(object);
     }
-    
+
     protected abstract void validateRemove(E object) throws Exception;
 
+    @Override
     public List<E> getAll() throws Exception {
         return dao().getAll();
     }
-    
+
+    @Override
     public E get(long id) throws Exception {
         return dao().get(id);
     }
-    
+
+    @Override
     public E get(E object) throws Exception {
         return dao().get(object);
     }
-    
+
 }

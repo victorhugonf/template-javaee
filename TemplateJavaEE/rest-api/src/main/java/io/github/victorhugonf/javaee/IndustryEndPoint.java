@@ -7,7 +7,7 @@ import io.github.victorhugonf.javaee.ejb.entity.Industry;
 import io.github.victorhugonf.javaee.ejb.service.IndustryService;
 
 @Path("industry")
-public class EndPointIndustry extends GenericEndPoint<Industry, IndustryService> {
+public class IndustryEndPoint extends GenericEndPoint<Industry, IndustryService> {
 
 	@Inject
 	private IndustryService industryService;

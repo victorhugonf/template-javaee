@@ -5,7 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 @Path("ping")
-public class EndPointPing {
+public class PingEndPoint {
 
 	@GET
 	public Response ping(){
