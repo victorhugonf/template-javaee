@@ -1,0 +1,333 @@
+{
+	"info": {
+		"name": "template-javaee",
+		"_postman_id": "9799c41e-4ee4-00e3-6ec2-1ee2837539e2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "useful",
+			"description": "",
+			"item": [
+				{
+					"name": "localhost:8080/rest-api/ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/rest-api/ping",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"ping"
+							]
+						},
+						"description": "Connection test"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/rest-api/logerror",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/rest-api/logerror",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"logerror"
+							]
+						},
+						"description": "Connection test"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "aircraft",
+			"description": "",
+			"item": [
+				{
+					"name": "localhost:8080/rest-api/aircraft",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/rest-api/aircraft",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"aircraft"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/rest-api/aircraft",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"747-400\",\n    \"industry\": {\n    \t\"id\": 1,\n        \"name\": \"Boeing\"\n    }\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/rest-api/aircraft",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"aircraft"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/rest-api/aircraft/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/rest-api/aircraft/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"aircraft",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/rest-api/aircraft/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 5,\n    \"model\": \"747-8\",\n    \"industry\": {\n    \t\"id\": 1,\n        \"name\": \"Boeing\"\n    }\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/rest-api/aircraft/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"aircraft",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/rest-api/aircraft/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 5,\n    \"model\": \"747-8\",\n    \"industry\": {\n    \t\"id\": 1,\n        \"name\": \"Boeing\"\n    }\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/rest-api/aircraft/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"aircraft",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "industry",
+			"description": "",
+			"item": [
+				{
+					"name": "localhost:8080/rest-api/industry",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/rest-api/industry",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"industry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/rest-api/industry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bombardier\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/rest-api/industry",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"industry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/rest-api/industry/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/rest-api/industry/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"industry",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/rest-api/industry/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 4,\n    \"name\": \"Bombardier Industry\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/rest-api/industry/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"industry",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/rest-api/industry/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/rest-api/industry/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest-api",
+								"industry",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
