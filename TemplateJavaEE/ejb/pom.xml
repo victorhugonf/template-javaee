@@ -39,18 +39,14 @@
 			<artifactId>javaee-api</artifactId>
 			<version>${javaee-api-version}</version>
 		</dependency>
-
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-jpamodelgen</artifactId>
 		    <version>5.2.15.Final</version>
 		</dependency>
-
 		<dependency>
     		<groupId>org.apache.commons</groupId>
-    		<artifactId>commons-lang3</artifactId>
-    		<scope>provided</scope>
+		    <artifactId>commons-lang3</artifactId>
 		</dependency>
-
 	</dependencies>
 </project>

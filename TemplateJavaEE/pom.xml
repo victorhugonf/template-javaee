@@ -11,8 +11,9 @@
 
 		<java-version>1.8</java-version>
     	<javaee-api-version>8.0</javaee-api-version>
+    	<ejb-version>3.2</ejb-version>
     	<resteasy-jaxrs-version>3.1.4.Final</resteasy-jaxrs-version>
-    	<commons-lang3-version>3.0</commons-lang3-version>
+    	<commons-lang3-version>3.7</commons-lang3-version>
     	
 		<maven.compiler.source>${java-version}</maven.compiler.source>
 		<maven.compiler.target>${java-version}</maven.compiler.target>
@@ -30,18 +31,16 @@
   <modules>
   	<module>ear</module>
   	<module>ejb</module>
-  	<!-- <module>jsf</module> -->
   	<module>rest-api</module>
   </modules>
 
   <dependencyManagement>
   	<dependencies>
 		<dependency>
-    		<groupId>org.apache.commons</groupId>
-    		<artifactId>commons-lang3</artifactId>
-    		<version>${commons-lang3-version}</version>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>${commons-lang3-version}</version>
 		</dependency>
-  		
   	</dependencies>
   </dependencyManagement>
   
@@ -63,30 +62,32 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
 				<version>${ear-plugin-version}</version>
-				<!-- <configuration>
+				<!--<configuration>
 					<generateModuleId>true</generateModuleId>
+					 
 					<packagingExcludes>/lib/hibernate-core-4.3.7.Final.jar,lib/hibernate-jpa-2.1-api-1.0.0.Final.jar</packagingExcludes>
+					
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>/lib</classpathPrefix>
 						</manifest>
 					</archive>
-				</configuration> -->
+				</configuration>-->
 			</plugin>
 			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ejb-plugin</artifactId>
 				<version>${ejb-plugin-version}</version>
-				<!-- <configuration>
-					<ejbVersion>${ejb-spec-version}</ejbVersion>
+				<configuration>
+					<ejbVersion>${ejb-version}</ejbVersion>
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>
-				</configuration> -->
+				</configuration>
 			</plugin>
 
 			<plugin>

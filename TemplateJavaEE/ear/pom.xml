@@ -29,12 +29,6 @@
   					<groupId>io.github.victorhugonf.javaee</groupId>
     				<artifactId>ejb</artifactId>
   				</ejbModule>
-  				 <!--
-  				 <webModule>
-  					<groupId>io.github.victorhugonf.javaee</groupId>
-    				<artifactId>jsf</artifactId>
-  				</webModule>
-  				 -->
   				<webModule>
   					<groupId>io.github.victorhugonf.javaee</groupId>
     				<artifactId>rest-api</artifactId>
