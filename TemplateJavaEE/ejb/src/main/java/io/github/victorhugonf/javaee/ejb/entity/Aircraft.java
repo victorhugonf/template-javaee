@@ -9,8 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.apache.commons.lang3.StringUtils;
+import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import io.github.victorhugonf.javaee.ejb.utils.CONSTANTS;
 
@@ -21,15 +22,22 @@ import io.github.victorhugonf.javaee.ejb.utils.CONSTANTS;
 					allocationSize = 1)
 public class Aircraft implements EntityIdentifiable{
 
+	private static final long serialVersionUID = 2124815335333460885L;
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = CONSTANTS.DATA_BASE.TABLES.AIRCRAFTS.SEQUENCE)
     private long id = 0;
 
+	@Version
+	private long version;
+
 	@Column(name = CONSTANTS.DATA_BASE.TABLES.AIRCRAFTS.COLUMNS.MODEL, nullable = false, columnDefinition="text")
+	@NotEmpty(message = "The aircraft's model must be informed.")
 	private String model;
 
 	@ManyToOne
 	@JoinColumn(name = CONSTANTS.DATA_BASE.TABLES.AIRCRAFTS.COLUMNS.ID_INDUSTRY)
+	@NotNull(message = "The aircraft's industry must be informed.")
 	private Industry industry;
 
 	@Override
@@ -62,17 +70,5 @@ public class Aircraft implements EntityIdentifiable{
     public String toString(){
         return getId() + ";" + getModel() + ";";
     }
-
-    @Override
-	public void validate() throws Exception {
-		//TODO: tratar BusinessException
-		if(StringUtils.isBlank(getModel())){
-			throw new Exception("Please, informe the model.");
-        }
-
-		if(getIndustry() == null){
-			throw new Exception("Please, informe the industry.");
-		}
-	}
 
 }

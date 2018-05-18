@@ -4,30 +4,37 @@
   <artifactId>template-javaee</artifactId>
   <packaging>pom</packaging>
   <name>Template Java EE</name>
-  
+
   	<properties>
   		<project-version>0.0.1</project-version>
   		<module-version>${project-version}</module-version>
 
 		<java-version>1.8</java-version>
     	<javaee-api-version>8.0</javaee-api-version>
+    	<validation-api-version>2.0.1.Final</validation-api-version>
+    	<cdi-api-version>2.0</cdi-api-version>
+    	<hibernate-core-version>5.2.16.Final</hibernate-core-version>
+    	<hibernate-jpa-version>1.0.2.Final</hibernate-jpa-version>
+    	<hibernate-validator-version>6.0.9.Final</hibernate-validator-version>
+    	<hibernate-jpamodelgen-version>5.2.15.Final</hibernate-jpamodelgen-version>
     	<ejb-version>3.2</ejb-version>
     	<resteasy-jaxrs-version>3.1.4.Final</resteasy-jaxrs-version>
+    	<!-- <resteasy-validator-version>3.5.1.Final</resteasy-validator-version> -->
     	<commons-lang3-version>3.7</commons-lang3-version>
-    	
+
 		<maven.compiler.source>${java-version}</maven.compiler.source>
 		<maven.compiler.target>${java-version}</maven.compiler.target>
-		
+
 		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
 		<ear-plugin-version>2.10.1</ear-plugin-version>
 		<ejb-plugin-version>2.5.1</ejb-plugin-version>
 		<war-plugin-version>2.6</war-plugin-version>
-		
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-  
+
   <version>${project-version}</version>
-  
+
   <modules>
   	<module>ear</module>
   	<module>ejb</module>
@@ -43,7 +50,7 @@
 		</dependency>
   	</dependencies>
   </dependencyManagement>
-  
+
   <build>
 	<pluginManagement>
     	<plugins>
@@ -55,18 +62,18 @@
                 	<source>${java-version}</source>
                     <target>${java-version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>                    
+                </configuration>
             </plugin>
-            
+
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
 				<version>${ear-plugin-version}</version>
 				<!--<configuration>
 					<generateModuleId>true</generateModuleId>
-					 
+
 					<packagingExcludes>/lib/hibernate-core-4.3.7.Final.jar,lib/hibernate-jpa-2.1-api-1.0.0.Final.jar</packagingExcludes>
-					
+
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
@@ -75,7 +82,7 @@
 					</archive>
 				</configuration>-->
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ejb-plugin</artifactId>
@@ -117,5 +124,5 @@
         </plugins>
     </pluginManagement>
   </build>
-  
+
 </project>

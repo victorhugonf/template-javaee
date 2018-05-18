@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.apache.commons.lang3.StringUtils;
+import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
 
 import io.github.victorhugonf.javaee.ejb.utils.CONSTANTS;
 
@@ -22,11 +22,17 @@ import io.github.victorhugonf.javaee.ejb.utils.CONSTANTS;
 					allocationSize = 1)
 public class Industry implements EntityIdentifiable{
 
+	private static final long serialVersionUID = -2432291346849877722L;
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = CONSTANTS.DATA_BASE.TABLES.INDUSTRIES.SEQUENCE)
     private long id = 0;
 
+	@Version
+	private long version;
+
 	@Column(name = CONSTANTS.DATA_BASE.TABLES.INDUSTRIES.COLUMNS.NAME, nullable = false, columnDefinition="text")
+	@NotEmpty(message = "The industry's name must be informed.")
 	private String name;
 
 	@OneToMany(mappedBy = CONSTANTS.DATA_BASE.TABLES.AIRCRAFTS.REFERENCES.INDUSTRY)
@@ -54,13 +60,5 @@ public class Industry implements EntityIdentifiable{
     public String toString(){
         return getId() + ";" + getName() + ";";
     }
-
-    @Override
-	public void validate() throws Exception {
-		//TODO: tratar BusinessException
-		if(StringUtils.isBlank(getName())){
-			throw new Exception("Please, informe the name.");
-        }
-	}
 
 }

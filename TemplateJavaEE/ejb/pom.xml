@@ -39,11 +39,43 @@
 			<artifactId>javaee-api</artifactId>
 			<version>${javaee-api-version}</version>
 		</dependency>
+
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+            <version>${validation-api-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>${cdi-api-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-core-version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.hibernate.javax.persistence</groupId>
+		    <artifactId>hibernate-jpa-2.1-api</artifactId>
+		    <version>${hibernate-jpa-version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>${hibernate-validator-version}</version>
+		</dependency>
+
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-jpamodelgen</artifactId>
-		    <version>5.2.15.Final</version>
+		    <version>${hibernate-jpamodelgen-version}</version>
 		</dependency>
+
 		<dependency>
     		<groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>

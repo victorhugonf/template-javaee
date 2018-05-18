@@ -8,6 +8,7 @@
 		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
 
 		<shared-cache-mode>DISABLE_SELECTIVE</shared-cache-mode>
+		<!--<validation-mode>AUTO</validation-mode>-->
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
@@ -18,6 +19,7 @@
 
 			<property name="hibernate.cache.use_second_level_cache" value="true" />
 			<property name="hibernate.cache.use_query_cache" value="true" />
+			<!--<property name="javax.persistence.validation.mode" value="AUTO" />-->
 		</properties>
 	</persistence-unit>
 

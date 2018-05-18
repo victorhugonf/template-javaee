@@ -1,6 +1,5 @@
 package io.github.victorhugonf.javaee.ejb.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import io.github.victorhugonf.javaee.ejb.utils.CONSTANTS;
 import io.github.victorhugonf.javaee.ejb.utils.exceptions.UtilException;
@@ -19,35 +19,38 @@ import io.github.victorhugonf.javaee.ejb.utils.exceptions.UtilException;
 @SequenceGenerator(name = CONSTANTS.DATA_BASE.TABLES.LOG_ERRORS.SEQUENCE,
 					sequenceName = CONSTANTS.DATA_BASE.TABLES.LOG_ERRORS.SEQUENCE,
 					allocationSize = 1)
-public class LogError implements Serializable, EntityIdentifiable{
-    
-	private static final long serialVersionUID = -1253994792523393811L;
+public class LogError implements EntityIdentifiable{
+
+	private static final long serialVersionUID = -3290841528791872130L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = CONSTANTS.DATA_BASE.TABLES.LOG_ERRORS.SEQUENCE)
     private long id;
-    
+
+	@Version
+	private long version;
+
     @Column(nullable = false, columnDefinition="text")
     private String message;
-    
+
     @Column(name = CONSTANTS.DATA_BASE.TABLES.LOG_ERRORS.COLUMNS.STACK_TRACE, nullable = false, columnDefinition="text")
     private String stackTrace;
-    
+
     @Column(nullable = false)
     private Date date;
-    
+
     public LogError(){
     	super();
     }
-    
+
     public LogError(Exception e){
     	this();
-    	
+
     	message = getMessage(e);
 		stackTrace = getStackTrace(e);
 		date = new Date();
     }
-    
+
     public long getId() {
 		return id;
 	}
@@ -67,23 +70,23 @@ public class LogError implements Serializable, EntityIdentifiable{
 	public String getStackTrace() {
 		return stackTrace;
 	}
-	
+
 	public void setStackTrace(String stackTrace) {
 		this.stackTrace = stackTrace;
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
-	
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
 	public void validate() throws Exception {
-    	
+
 	}
-    
+
     @Override
     public String toString(){
         return getId() + ";" + getMessage() + ";" + getStackTrace() + ";" + getDate() + ";";

@@ -1,7 +1,8 @@
-package io.github.victorhugonf.javaee;
+package io.github.victorhugonf.javaee.rest;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,8 +16,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import io.github.victorhugonf.javaee.dto.LogErrorDto;
 import io.github.victorhugonf.javaee.ejb.entity.EntityIdentifiable;
-import io.github.victorhugonf.javaee.ejb.entity.LogError;
 import io.github.victorhugonf.javaee.ejb.service.Service;
 
 @Consumes(value = MediaType.APPLICATION_JSON)
@@ -47,7 +48,7 @@ public abstract class GenericEndPoint<E extends EntityIdentifiable, S extends Se
 
 		return Response
 				.serverError()
-				.entity(new LogError(e))
+				.entity(new LogErrorDto(e))
 				.build();
 	}
 
@@ -83,7 +84,7 @@ public abstract class GenericEndPoint<E extends EntityIdentifiable, S extends Se
 	}
 
 	@POST
-	public Response post(E object){
+	public Response post(@Valid E object){
 		try {
 			E persistedObject = service().persist(object);
 
@@ -99,7 +100,7 @@ public abstract class GenericEndPoint<E extends EntityIdentifiable, S extends Se
 
 	@PUT
 	@Path("{id}")
-	public Response put(@PathParam("id") long id, E object){
+	public Response put(@PathParam("id") long id, @Valid  E object){
 		try {
 			if(object == null){
 				throw new Exception(getClazz().getSimpleName() + " not defined.");

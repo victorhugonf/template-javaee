@@ -1,11 +1,11 @@
 package io.github.victorhugonf.javaee.ejb.entity;
 
-public interface EntityIdentifiable  {
-	
+import java.io.Serializable;
+
+public interface EntityIdentifiable extends Serializable {
+
 	long getId();
 
 	void setId(long id);
-	
-	void validate() throws Exception;
 
 }

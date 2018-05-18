@@ -1,4 +1,4 @@
-package io.github.victorhugonf.javaee;
+package io.github.victorhugonf.javaee.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

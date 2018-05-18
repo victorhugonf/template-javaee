@@ -1,4 +1,4 @@
-package io.github.victorhugonf.javaee;
+package io.github.victorhugonf.javaee.rest;
 
 import javax.inject.Inject;
 import javax.ws.rs.Path;
@@ -6,7 +6,7 @@ import javax.ws.rs.Path;
 import io.github.victorhugonf.javaee.ejb.entity.LogError;
 import io.github.victorhugonf.javaee.ejb.service.LogErrorService;
 
-@Path("logerror")
+@Path("logerrors")
 public class LogErrorEndPoint extends GenericEndPoint<LogError, LogErrorService> {
 
 	@Inject
