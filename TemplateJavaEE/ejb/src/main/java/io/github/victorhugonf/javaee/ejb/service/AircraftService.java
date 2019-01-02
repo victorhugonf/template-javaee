@@ -14,35 +14,35 @@ import io.github.victorhugonf.javaee.ejb.entity.Aircraft;
 @Stateless
 @LocalBean
 public class AircraftService extends GenericService<Aircraft, AircraftDao> {
-	   
+
 	@EJB
 	private AircraftDao aircraftDao;
-	
+
 	@Override
 	protected AircraftDao dao() {
 		return aircraftDao;
 	}
-	
+
 	@Override
     protected void validatePersist(Aircraft object) throws Exception{
-		
+
     }
-    
+
     @Override
     protected void validateMerge(Aircraft object) throws Exception{
-    	
+
     }
-    
+
     @Override
 	protected void validateRemove(Aircraft object) throws Exception {
-				
+
 	}
-    
+
 	public List<Aircraft> getByModel(String model) throws Exception {
 		if(StringUtils.isBlank(model)){
-			throw new Exception("Please, informe the model.");
+			throw new Exception("Please, inform the model.");
 		}
-		
+
 		return dao().getByModel(model);
     }
 
@@ -50,5 +50,5 @@ public class AircraftService extends GenericService<Aircraft, AircraftDao> {
 	protected Class<Aircraft> getClazz() {
 		return Aircraft.class;
 	}
-    
+
 }

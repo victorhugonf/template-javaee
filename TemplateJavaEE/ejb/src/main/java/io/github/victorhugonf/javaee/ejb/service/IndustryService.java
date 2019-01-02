@@ -14,35 +14,35 @@ import io.github.victorhugonf.javaee.ejb.entity.Industry;
 @Stateless
 @LocalBean
 public class IndustryService extends GenericService<Industry, IndustryDao> {
-	   
+
 	@EJB
 	private IndustryDao industryDao;
-	
+
 	@Override
 	protected IndustryDao dao() {
 		return industryDao;
 	}
-	
+
 	@Override
     protected void validatePersist(Industry object) throws Exception{
-		
+
     }
-    
+
     @Override
     protected void validateMerge(Industry object) throws Exception{
-    	
+
     }
-    
+
     @Override
 	protected void validateRemove(Industry object) throws Exception {
-				
+
 	}
-    
+
 	public List<Industry> getByName(String name) throws Exception {
 		if(StringUtils.isBlank(name)){
-			throw new Exception("Please, informe the name.");
+			throw new Exception("Please, inform the name.");
 		}
-		
+
 		return dao().getByName(name);
     }
 
@@ -50,5 +50,5 @@ public class IndustryService extends GenericService<Industry, IndustryDao> {
 	protected Class<Industry> getClazz() {
 		return Industry.class;
 	}
-    
+
 }
